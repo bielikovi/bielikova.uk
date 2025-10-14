@@ -22,6 +22,9 @@
 
 ----------------------------
 
+/Users/kitty/Downloads/bielikova.uk:
+
 1. git diff
 2. git commit -am "work log commit (2 hrs)"
 3. git push
+
