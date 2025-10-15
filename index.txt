@@ -27,7 +27,7 @@
 1. git pull (витягнути зміни зроблені колабораторами)
 2. mcedit index.html (робоча сесія редагування, Ctrl+O, F2, F3, F4, F5)
 3. git diff (переглянути зміни)
-4. git add img
+4. git add image
 5. git commit -am "work log commit (2 hrs)" (додати зміни в локальне дерево)
 6. git push (послати локальне дерево на сервер)
 
