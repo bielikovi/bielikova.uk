@@ -25,7 +25,7 @@
 /Users/kitty/Downloads/bielikova.uk:
 
 1. git pull (витягнути зміни зроблені колабораторами)
-2. mcedit index.html (робоча сесія редагування)
+2. mcedit index.html (робоча сесія редагування, Ctrl+O, F2, F3, F4, F5)
 3. git diff (переглянути зміни)
 4. git commit -am "work log commit (2 hrs)" (додати зміни в локальне дерево)
 5. git push (послати локальне дерево на сервер)
