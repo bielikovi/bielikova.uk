@@ -17,7 +17,7 @@
 │   ├── sontselov-eliohema-17954413303683.jpg
 │   ├── stories-1.png
 │   └── telegraf-3-2023.-volia-57305692022896.webp
-├── index.html
+├── wishlist.html
 └── index.txt
 
 ----------------------------

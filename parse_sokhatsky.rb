@@ -393,7 +393,7 @@ target_ids.each do |id|
   person = individuals[id]
   next unless person
   clean_id = id.gsub('@', '')
-  
+  next unless clean_id != "I88888888"
   # Main CSV row
   rel = ancestor_info[id]
   depth = rel ? rel[:depth] : "N/A"
@@ -404,10 +404,8 @@ target_ids.each do |id|
   folder_name = get_folder_name(id, person)
   person_dir = File.join(STORAGE_DIR, folder_name)
   FileUtils.mkdir_p(person_dir)
-  
   # Isomorphic Extraction
   File.write(File.join(person_dir, "raw-#{clean_id}.ged"), person[:block].join(""))
-  
   indi_rows = [
     ["Id", clean_id],
     ["Name", person[:name]],
@@ -423,16 +421,14 @@ target_ids.each do |id|
   write_csv(File.join(person_dir, "indi-#{clean_id}.csv"), ["Field", "Value"], indi_rows)
 
   File.write(File.join(person_dir, "bio-#{clean_id}.txt"), person[:notes].join("\n\n")) unless person[:notes].empty?
-  
   # Detailed Events
   unless person[:events].empty?
     csv_rows = person[:events].map { |e| [e[:tag], e[:value], e[:date], e[:place]] }
     write_csv(File.join(person_dir, "events-#{clean_id}.csv"), ["Tag", "Value", "Date", "Place"], csv_rows)
-    
     txt_lines = person[:events].map { |e| "#{e[:tag]}: #{e[:value]} (#{e[:date]}) #{e[:place]}".strip }
     File.write(File.join(person_dir, "events-#{clean_id}.txt"), txt_lines.join("\n"))
   end
-  
+
   # Multimedia Metadata
   unless person[:objes].empty?
     obj_rows = person[:objes].map { |o| [o[:file], o[:titl], o[:date], o[:form]] }
@@ -450,7 +446,7 @@ target_ids.each do |id|
     prefix = %w[pdf doc docx txt rtf].include?(ext) ? "document" : "image"
     download_file(obj[:file], File.join(person_dir, "#{prefix}-#{clean_id}-#{date}-#{titl}.#{ext}")) if obj[:file].start_with?('http')
   end
-  
+
   # Ancestor tree for THIS person
   sub_csv = File.join(person_dir, "#{clean_id}.csv")
   sub_res = []
